@@ -197,7 +197,7 @@ class CI_Hooks {
 			$function = $data['function'];
 		}
 
-		if (isset($data['params']))
+		if (array_key_exists('params', $data))
 		{
 			$params = $data['params'];
 		}
