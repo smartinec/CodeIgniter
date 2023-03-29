@@ -469,7 +469,7 @@ if ( ! function_exists('_exception_handler'))
 	{
 		 // We don't bother with "strict" notices since they tend to fill up
 		 // the log file with excess information that isn't normally very helpful.
-		if ($severity == E_STRICT)
+		if ($severity == E_STRICT || $severity == E_DEPRECATED)
 		{
 			return;
 		}
