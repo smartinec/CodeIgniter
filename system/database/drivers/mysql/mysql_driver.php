@@ -521,7 +521,7 @@ class CI_DB_mysql_driver extends CI_DB {
 			$tables = array($tables);
 		}
 
-		return '('.implode(', ', $tables).')';
+		return implode(', ', $tables);
 	}
 
 	// --------------------------------------------------------------------
