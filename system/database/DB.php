@@ -138,10 +138,12 @@ function &DB($params = '', $active_record_override = NULL)
 		}
 	}
 
-	require_once(BASEPATH.'database/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php');
-
 	// Instantiate the DB adapter
 	$driver = 'CI_DB_'.$params['dbdriver'].'_driver';
+	if ( ! class_exists($driver))
+	{
+		require_once(BASEPATH.'database/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php');
+	}
 	$DB = new $driver($params);
 
 	if ($DB->autoinit == TRUE)
