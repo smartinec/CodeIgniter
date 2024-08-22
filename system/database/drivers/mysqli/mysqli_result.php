@@ -33,9 +33,21 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	 * @access	public
 	 * @return	integer
 	 */
-	function num_rows()
+	function num_rows($force = FALSE)
 	{
-		return is_a($this->result_id, 'mysqli_result') ? @mysqli_num_rows($this->result_id) : NULL;
+		$count = NULL;
+		if (is_a($this->result_id, 'mysqli_result'))
+		{
+			if ($force || $this->result_id->type == MYSQLI_STORE_RESULT)
+			{
+				$count = @mysqli_num_rows($this->result_id);
+			}
+			else
+			{
+				$count = 0;
+			}
+		}
+		return $count;
 	}
 
 	// --------------------------------------------------------------------
